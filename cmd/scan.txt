@@ -1,0 +1,58 @@
+// package cmd
+
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+// 	"os/exec"
+// 	"path/filepath"
+
+// 	"github.com/spf13/cobra"
+// )
+
+// var excludeFile string
+
+// var scanCmd = &cobra.Command{
+// 	Use: "scan-2",
+// 	Run: func(cmd *cobra.Command, args []string) {
+// 		path := args[0]
+// 		excludeFile = args[1]
+// 		scanDirectory(path)
+// 	},
+// }
+
+// func scanDirectory(path string) {
+// 	c:= make(chan string)
+// 	go func(p string,ch chan string) {
+// 		scanPackageFile(p, ch)
+// 	}(path,c)
+	
+
+// 	files, err := ioutil.ReadDir(path)
+// 	fmt.Println("read files")
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+
+// 	for _, v := range files {
+// 		if v.IsDir() {
+// 			scanDirectory(path + "/" + v.Name())
+// 		}
+// 	}
+
+// 	fmt.Println(<-c)
+// }
+
+// func scanPackageFile(path string, channel chan string) {
+// 	if filepath.Base(path) != excludeFile {
+// 	cmd := exec.Command("yarn", "audit")
+// 	cmd.Dir = path
+// 	out, _ := cmd.Output()
+// 	channel<-string(out) 
+// 	} else {
+// 		channel <- "no"
+// 	}
+// }
+
+// func init() {
+// 	rootCmd.AddCommand(scanCmd)
+// }
