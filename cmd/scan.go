@@ -59,7 +59,7 @@ func scanPackageManagers() {
 				go func(folderName string, ch chan string, waitGroup *sync.WaitGroup) {
 					defer waitGroup.Done()
 					scanningResults := scanFolder(destinationDirectory + "/" + folderName)
-					resultToDisplay := ""
+					resultToDisplay := destinationDirectory + "/" + folderName + "\n"
 
 					for _, r := range scanningResults {
 						if r.Data.Advisory.Module_name != "" {
